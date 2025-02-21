@@ -1,1 +1,75 @@
 @import "tailwindcss";
+
+@theme {
+  --font-circularstd: "CircularStd", system-ui, Sans-Serif;
+
+  /* APP BG */
+  /* #101010 */
+  --color-app-bg-dark: oklch(17.3% 0 0);
+
+  /* LAYOUT */
+  /* zinc800 */
+  --color-bg-dark: oklch(0.274 0.006 286.033);
+  /* zinc900 */
+  --color-player-bg-dark: oklch(0.21 0.006 285.885);
+
+  /* CARDS */
+  /* zinc700 */
+  --color-card-primary-dark: oklch(0.37 0.013 285.805);
+  /* zinc800 */
+  --color-card-secondary-dark: oklch(0.274 0.006 286.033);
+
+  /* TEXT */
+  /* zinc400 */
+  --color-text-dark: oklch(0.705 0.015 286.067);
+  /* zinc100 */
+  --color-text-hover-dark: oklch(0.967 0.001 286.375);
+
+  /* PLAY CARD BUTTON */
+  --color-play-card: oklch(0.673 0.182 276.935);
+  --color-play-card-hover: oklch(0.585 0.233 277.117);
+}
+
+:root {
+  @apply text-text-dark;
+}
+
+html {
+  @apply bg-app-bg-dark font-circularstd;
+}
+
+@font-face {
+  font-family: "CircularStd";
+  src: url("/fonts/CircularStd-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CircularStd";
+  src: url("/fonts/CircularStd-Book.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CircularStd";
+  src: url("/fonts/CircularStd-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CircularStd";
+  src: url("/fonts/CircularStd-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CircularStd";
+  src: url("/fonts/CircularStd-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}

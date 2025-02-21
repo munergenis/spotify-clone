@@ -1,7 +1,53 @@
 ---
+import { homeCategories, homeSongs } from "@/lib/data";
 import Layout from "../layouts/Layout.astro";
+import HomeCategoryCard from "@/components/HomeCategoryCard.astro";
+import BigCard from "@/components/BigCard.astro";
 ---
 
 <Layout>
-  <h1>Spotify Clone</h1>
+  <h3 id="greeting" class="text-3xl font-bold text-white mt-4">Bon dia</h3>
+  <p class="mb-10 text-sm">
+    Aquí trobareu una selecció de cants per a gaudir i compartir amb qui ho
+    desitgeu.
+  </p>
+  <ul class="grid grid-cols-2 xl:grid-cols-4 gap-4 max-w-7xl">
+    {
+      homeCategories.map((category) => (
+        <HomeCategoryCard class="" category={category} />
+      ))
+    }
+  </ul>
+  <a
+    class="block w-max mt-4 text-right text-sm text-white/80 border-b border-transparent hover:border-white/80 transition-all duration-300"
+    href="/categories">Veure totes les categories</a
+  >
+  <h4 class="text-xl font-bold text-white mt-10 mb-4">Cançons Destacades</h4>
+  <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl">
+    {homeSongs.map((song) => <BigCard song={song} />)}
+  </ul>
+  <a
+    class="block w-max mt-4 text-right text-sm text-white/80 border-b border-transparent hover:border-white/80 transition-all duration-300"
+    href="/songs">Veure totes les cançons</a
+  >
 </Layout>
+
+<script>
+  const $greeting = document.getElementById("greeting");
+
+  const hours = new Date().getHours();
+
+  let greetingString = "Benvingut";
+
+  if (hours >= 20 || hours < 6) {
+    greetingString = "Bona Nit";
+  } else if (hours >= 12) {
+    greetingString = "Bona Tarda";
+  } else {
+    greetingString = "Bon Dia";
+  }
+
+  if ($greeting) {
+    $greeting.textContent = greetingString;
+  }
+</script>

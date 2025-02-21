@@ -1,0 +1,64 @@
+---
+import PlayCardButton from "@/components/PlayCardButton.astro";
+import { songs, type Category, type Song } from "@/lib/data";
+
+interface Props {
+  song?: Song;
+  category?: Category;
+}
+
+const { song, category } = Astro.props;
+
+let href = "/";
+// TODO buscar imagen placeholder
+let src = "#";
+let title = "Default title";
+let info = "Info";
+let transitionImage = "";
+let transitionTitle = "";
+
+if (song) {
+  href = `/songs/${song.slug}`;
+  src = song.image;
+  title = song.title;
+  info = song.artists.join(", ");
+  transitionImage = `song ${song.slug} image`;
+  transitionTitle = `song ${song.slug} title`;
+} else if (category) {
+  href = `/categories/${category.slug}`;
+  src = category.cover;
+  title = category.title;
+  info =
+    songs
+      .filter((song) => song.categoriesId.includes(category.id))
+      .length.toString() + " Cançons";
+  transitionImage = `category ${category.slug} image`;
+  transitionTitle = `category ${category.slug} title`;
+}
+---
+
+<li>
+  <a
+    class="song-item group bg-card-primary-dark flex flex-col p-2 rounded-sm shadow-md hover:shadow-xl hover:bg-card-primary-dark/50 transition duration-200"
+    href={href}
+  >
+    <picture class="relative rounded-sm overflow-hidden">
+      <img
+        class="object-cover"
+        src={src}
+        alt={`Portada de ${title}`}
+        transition:name={transitionImage}
+      />
+      <PlayCardButton />
+    </picture>
+
+    <div class="my-3 px-3">
+      <h4 class="text-lg text-white text-nowrap truncate">
+        <span transition:name={transitionTitle}>
+          {title}
+        </span>
+      </h4>
+      <p class="text-sm text-nowrap truncate">{info}</p>
+    </div>
+  </a>
+</li>

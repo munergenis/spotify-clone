@@ -1,0 +1,20 @@
+---
+import Play from "@/icons/Play.astro";
+
+interface Props {
+  type?: "big" | "small";
+}
+
+const { type = "big" } = Astro.props;
+
+const style: Record<"big" | "small", string> = {
+  big: "size-14 bottom-4 right-4",
+  small: "size-8 lg:size-10 inset-y-0 right-2 my-auto",
+};
+---
+
+<button
+  class=`absolute grid place-content-center opacity-0 bg-play-card rounded-full cursor-pointer group-hover:opacity-100 hover:bg-play-card-hover/90 hover:scale-105 transition duration-300 ${style[type]}`
+>
+  <Play class=`${type === 'small' ? 'size-6 lg:size-7' : 'size-9'}` />
+</button>

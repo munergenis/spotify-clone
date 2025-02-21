@@ -1,15 +1,36 @@
+---
+import Sidebar from "@/sections/Sidebar.astro";
+import Player from "@/sections/Player.astro";
+import "@/styles/global.css";
+import CommonHead from "@/components/CommonHead.astro";
+---
+
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!-- TODO -->
-    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
-    <title>Spotify Clone</title>
+    <CommonHead />
   </head>
   <body>
-    <slot />
+    <div class="relative h-screen grid gap-2 p-2" id="app">
+      <aside class="[grid-area:aside] flex flex-col overflow-y-auto">
+        <Sidebar />
+      </aside>
+      <main class="[grid-area:main] p-6 rounded-lg overflow-y-auto bg-bg-dark">
+        <slot />
+      </main>
+      <footer class="[grid-area:player] rounded-lg bg-player-bg-dark">
+        <Player />
+      </footer>
+    </div>
   </body>
 </html>
 
-<style></style>
+<style>
+  #app {
+    grid-template-areas:
+      "aside main"
+      "player player";
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: 1fr 80px;
+  }
+</style>

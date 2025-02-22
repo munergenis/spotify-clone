@@ -1,5 +1,5 @@
 ---
-import PlayCardButton from "@/components/PlayCardButton.astro";
+import PlayCardButton from "@/components/PlayCardButton";
 import { songs, type Category } from "@/lib/data";
 
 interface Props {
@@ -27,7 +27,7 @@ const songsNum = songs.filter((song) => song.categoriesId.includes(id)).length;
       />
     </picture>
 
-    <PlayCardButton type="small" />
+    <PlayCardButton client:visible size="small" media={category} />
 
     <div class="truncate flex flex-col justify-center">
       <h4 class="truncate text-sm text-white">

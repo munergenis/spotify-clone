@@ -1,13 +1,12 @@
 ---
-import PlayCardButton from "@/components/PlayCardButton.astro";
+import PlayCardButton from "@/components/PlayCardButton";
 import { songs, type Category, type Song } from "@/lib/data";
 
 interface Props {
-  song?: Song;
-  category?: Category;
+  media: Song | Category;
 }
 
-const { song, category } = Astro.props;
+const { media } = Astro.props;
 
 let href = "/";
 // TODO buscar imagen placeholder
@@ -17,23 +16,23 @@ let info = "Info";
 let transitionImage = "";
 let transitionTitle = "";
 
-if (song) {
-  href = `/songs/${song.slug}`;
-  src = song.image;
-  title = song.title;
-  info = song.artists.join(", ");
-  transitionImage = `song ${song.slug} image`;
-  transitionTitle = `song ${song.slug} title`;
-} else if (category) {
-  href = `/categories/${category.slug}`;
-  src = category.cover;
-  title = category.title;
+if (media.type === "song") {
+  href = `/songs/${media.slug}`;
+  src = media.image;
+  title = media.title;
+  info = media.artists.join(", ");
+  transitionImage = `song ${media.slug} image`;
+  transitionTitle = `song ${media.slug} title`;
+} else if (media.type === "category") {
+  href = `/categories/${media.slug}`;
+  src = media.cover;
+  title = media.title;
   info =
     songs
-      .filter((song) => song.categoriesId.includes(category.id))
+      .filter((song) => song.categoriesId.includes(media.id))
       .length.toString() + " Cançons";
-  transitionImage = `category ${category.slug} image`;
-  transitionTitle = `category ${category.slug} title`;
+  transitionImage = `category ${media.slug} image`;
+  transitionTitle = `category ${media.slug} title`;
 }
 ---
 
@@ -49,7 +48,7 @@ if (song) {
         alt={`Portada de ${title}`}
         transition:name={transitionImage}
       />
-      <PlayCardButton />
+      <PlayCardButton client:visible media={media} />
     </picture>
 
     <div class="my-3 px-3">

@@ -1,6 +1,7 @@
 import { colors } from "./colors";
 
 export interface Category {
+  type: "category";
   id: number;
   slug: string;
   title: string;
@@ -10,6 +11,7 @@ export interface Category {
 
 export const categories: Category[] = [
   {
+    type: "category",
     id: 1,
     slug: "1-fe",
     title: "Fe",
@@ -18,6 +20,7 @@ export const categories: Category[] = [
       "https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353",
   },
   {
+    type: "category",
     id: 2,
     slug: "1-gloria",
     title: "Gloria",
@@ -26,6 +29,7 @@ export const categories: Category[] = [
       "https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187",
   },
   {
+    type: "category",
     id: 3,
     slug: "3-altres",
     title: "Altres",
@@ -34,6 +38,7 @@ export const categories: Category[] = [
       "https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353",
   },
   {
+    type: "category",
     id: 4,
     slug: "4-altres-c",
     title: "Altres C",
@@ -42,6 +47,7 @@ export const categories: Category[] = [
       "https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187",
   },
   {
+    type: "category",
     id: 5,
     slug: "5-gent",
     title: "Gent",
@@ -50,6 +56,7 @@ export const categories: Category[] = [
       "https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353",
   },
   {
+    type: "category",
     id: 6,
     slug: "6-festa",
     title: "Festa",
@@ -82,6 +89,7 @@ export const allCategories = [
 ];
 
 export interface Song {
+  type: "song";
   id: number;
   slug: string;
   categoriesId: number[];
@@ -93,6 +101,7 @@ export interface Song {
 
 export const songs: Song[] = [
   {
+    type: "song",
     id: 1,
     slug: "1-moonlit-walk",
     categoriesId: [1],
@@ -102,6 +111,7 @@ export const songs: Song[] = [
     duration: 177,
   },
   {
+    type: "song",
     id: 2,
     slug: "2-coffee-daze",
     categoriesId: [1],
@@ -111,6 +121,7 @@ export const songs: Song[] = [
     duration: 220,
   },
   {
+    type: "song",
     id: 3,
     slug: "3-skyline-serenade",
     categoriesId: [1],
@@ -120,6 +131,7 @@ export const songs: Song[] = [
     duration: 209,
   },
   {
+    type: "song",
     id: 4,
     slug: "4-urban-echoes",
     categoriesId: [1],
@@ -129,6 +141,7 @@ export const songs: Song[] = [
     duration: 131,
   },
   {
+    type: "song",
     id: 5,
     slug: "5-nights-end",
     categoriesId: [1],
@@ -138,6 +151,7 @@ export const songs: Song[] = [
     duration: 146,
   },
   {
+    type: "song",
     id: 1,
     slug: "1-silent-rain",
     categoriesId: [2],
@@ -147,6 +161,7 @@ export const songs: Song[] = [
     duration: 158,
   },
   {
+    type: "song",
     id: 2,
     slug: "2-lost-pages",
     categoriesId: [2],
@@ -156,6 +171,7 @@ export const songs: Song[] = [
     duration: 160,
   },
   {
+    type: "song",
     id: 3,
     slug: "3-midnight-tales",
     categoriesId: [2],
@@ -165,6 +181,7 @@ export const songs: Song[] = [
     duration: 173,
   },
   {
+    type: "song",
     id: 4,
     slug: "4-city-ligths",
     categoriesId: [2],

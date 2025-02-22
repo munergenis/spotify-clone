@@ -1,6 +1,6 @@
 ---
 import Sidebar from "@/sections/Sidebar.astro";
-import Player from "@/sections/Player.astro";
+import Player from "@/sections/Player";
 import "@/styles/global.css";
 import CommonHead from "@/components/CommonHead.astro";
 ---
@@ -19,7 +19,7 @@ import CommonHead from "@/components/CommonHead.astro";
         <slot />
       </main>
       <footer class="[grid-area:player] rounded-lg bg-player-bg-dark">
-        <Player />
+        <Player client:load transition:name="media-player" transition:persist />
       </footer>
     </div>
   </body>
@@ -30,7 +30,7 @@ import CommonHead from "@/components/CommonHead.astro";
     grid-template-areas:
       "aside main"
       "player player";
-    grid-template-columns: 350px 1fr;
-    grid-template-rows: 1fr 80px;
+    grid-template-columns: 350px 1fr; /* 350px is the width of the sidebar */
+    grid-template-rows: 1fr 80px; /* 80px is the height of the player */
   }
 </style>

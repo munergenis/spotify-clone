@@ -1,9 +1,7 @@
-export const Pause = ({ className }: { className: string }) => (
+export const Pause = ({ className }: { className?: string }) => (
   <svg
-    className={className}
+    className={`size-4 ${className}`}
     role="img"
-    height="16"
-    width="16"
     aria-hidden="true"
     viewBox="0 0 16 16"
     fill="currentColor"
@@ -12,12 +10,10 @@ export const Pause = ({ className }: { className: string }) => (
   </svg>
 );
 
-export const Play = ({ className }: { className: string }) => (
+export const Play = ({ className }: { className?: string }) => (
   <svg
-    className={className}
+    className={`size-4 ${className}`}
     role="img"
-    height="16"
-    width="16"
     aria-hidden="true"
     viewBox="0 0 16 16"
     fill="currentColor"

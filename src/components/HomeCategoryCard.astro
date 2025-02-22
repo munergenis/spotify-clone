@@ -1,5 +1,5 @@
 ---
-import PlayCardButton from "@/components/PlayCardButton.astro";
+import PlayCardButton from "@/components/PlayCardButton";
 import { type Category } from "@/lib/data";
 
 interface Props {
@@ -25,7 +25,7 @@ const { slug, title, cover, id } = category;
       />
     </picture>
 
-    <PlayCardButton type="small" />
+    <PlayCardButton client:visible size="small" media={category} />
     <div class="truncate flex flex-col justify-center pr-2">
       <h4 class="truncate text-sm text-white">
         <span transition:name=`category ${slug} title`>{title}</span>

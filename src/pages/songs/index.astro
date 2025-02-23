@@ -8,6 +8,6 @@ import { songs } from "@/lib/data";
 <Layout>
   <h3 class="text-3xl my-4 text-white">Cançons</h3>
   <ul class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2">
-    {songs.map((song) => <BigCard song={song} />)}
+    {songs.map((song) => <BigCard media={song} />)}
   </ul>
 </Layout>

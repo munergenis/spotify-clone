@@ -2,7 +2,7 @@ import { colors } from "./colors";
 
 export interface Category {
   type: "category";
-  id: number;
+  id: string;
   slug: string;
   title: string;
   color: (typeof colors)[keyof typeof colors];
@@ -12,7 +12,7 @@ export interface Category {
 export const categories: Category[] = [
   {
     type: "category",
-    id: 1,
+    id: "a",
     slug: "1-fe",
     title: "Fe",
     color: colors.yellow,
@@ -21,7 +21,7 @@ export const categories: Category[] = [
   },
   {
     type: "category",
-    id: 2,
+    id: "b",
     slug: "1-gloria",
     title: "Gloria",
     color: colors.red,
@@ -30,7 +30,7 @@ export const categories: Category[] = [
   },
   {
     type: "category",
-    id: 3,
+    id: "c",
     slug: "3-altres",
     title: "Altres",
     color: colors.yellow,
@@ -39,7 +39,7 @@ export const categories: Category[] = [
   },
   {
     type: "category",
-    id: 4,
+    id: "d",
     slug: "4-altres-c",
     title: "Altres C",
     color: colors.red,
@@ -48,7 +48,7 @@ export const categories: Category[] = [
   },
   {
     type: "category",
-    id: 5,
+    id: "e",
     slug: "5-gent",
     title: "Gent",
     color: colors.yellow,
@@ -57,7 +57,7 @@ export const categories: Category[] = [
   },
   {
     type: "category",
-    id: 6,
+    id: "f",
     slug: "6-festa",
     title: "Festa",
     color: colors.red,
@@ -90,9 +90,10 @@ export const allCategories = [
 
 export interface Song {
   type: "song";
-  id: number;
+  id: string;
   slug: string;
-  categoriesId: number[];
+  src: string;
+  categoriesId: string[];
   title: string;
   image: string;
   artists: string[];
@@ -102,9 +103,10 @@ export interface Song {
 export const songs: Song[] = [
   {
     type: "song",
-    id: 1,
+    id: "1",
     slug: "1-moonlit-walk",
-    categoriesId: [1],
+    src: "/music/1/01.mp3",
+    categoriesId: ["a"],
     title: "Moonlit Walk",
     image: `https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353`,
     artists: ["LoFi Dreamer"],
@@ -112,9 +114,10 @@ export const songs: Song[] = [
   },
   {
     type: "song",
-    id: 2,
+    id: "2",
     slug: "2-coffee-daze",
-    categoriesId: [1],
+    src: "/music/1/03.mp3",
+    categoriesId: ["a"],
     title: "Coffee Daze",
     image: `https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353`,
     artists: ["LoFi Dreamer"],
@@ -122,9 +125,10 @@ export const songs: Song[] = [
   },
   {
     type: "song",
-    id: 3,
+    id: "3",
     slug: "3-skyline-serenade",
-    categoriesId: [1],
+    src: "/music/1/05.mp3",
+    categoriesId: ["b"],
     title: "Skyline Serenade",
     image: `https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353`,
     artists: ["LoFi Dreamer"],
@@ -132,9 +136,10 @@ export const songs: Song[] = [
   },
   {
     type: "song",
-    id: 4,
+    id: "4",
     slug: "4-urban-echoes",
-    categoriesId: [1],
+    src: "/music/2/02.mp3",
+    categoriesId: ["b"],
     title: "Urban Echoes",
     image: `https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353`,
     artists: ["LoFi Dreamer"],
@@ -142,9 +147,10 @@ export const songs: Song[] = [
   },
   {
     type: "song",
-    id: 5,
+    id: "5",
     slug: "5-nights-end",
-    categoriesId: [1],
+    src: "/music/2/04.mp3",
+    categoriesId: ["c"],
     title: "Night's End",
     image: `https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353`,
     artists: ["LoFi Dreamer"],
@@ -152,9 +158,10 @@ export const songs: Song[] = [
   },
   {
     type: "song",
-    id: 1,
+    id: "6",
     slug: "1-silent-rain",
-    categoriesId: [2],
+    src: "/music/3/03.mp3",
+    categoriesId: ["d"],
     title: "Silent Rain",
     image: `https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187`,
     artists: ["Urban Nocturne"],
@@ -162,9 +169,10 @@ export const songs: Song[] = [
   },
   {
     type: "song",
-    id: 2,
+    id: "7",
     slug: "2-lost-pages",
-    categoriesId: [2],
+    src: "/music/4/01.mp3",
+    categoriesId: ["e"],
     title: "Lost Pages",
     image: `https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187`,
     artists: ["Urban Nocturne"],
@@ -172,9 +180,10 @@ export const songs: Song[] = [
   },
   {
     type: "song",
-    id: 3,
+    id: "8",
     slug: "3-midnight-tales",
-    categoriesId: [2],
+    src: "/music/4/04.mp3",
+    categoriesId: ["e"],
     title: "Midnight Tales",
     image: `https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187`,
     artists: ["Urban Nocturne"],
@@ -182,9 +191,10 @@ export const songs: Song[] = [
   },
   {
     type: "song",
-    id: 4,
+    id: "9",
     slug: "4-city-ligths",
-    categoriesId: [2],
+    src: "/music/5/02.mp3",
+    categoriesId: ["f"],
     title: "City Lights",
     image: `https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187`,
     artists: ["Urban Nocturne"],

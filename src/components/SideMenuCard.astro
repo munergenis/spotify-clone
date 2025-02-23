@@ -27,7 +27,13 @@ const songsNum = songs.filter((song) => song.categoriesId.includes(id)).length;
       />
     </picture>
 
-    <PlayCardButton client:visible size="small" media={category} />
+    <PlayCardButton
+      client:visible
+      size="small"
+      transition:name={`play-side-menu ${category.id} button`}
+      transition:persist
+      media={category}
+    />
 
     <div class="truncate flex flex-col justify-center">
       <h4 class="truncate text-sm text-white">

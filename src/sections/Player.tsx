@@ -125,18 +125,26 @@ const Player = () => {
   return (
     <div className="flex h-full gap-x-18 items-center p-4">
       <div className="h-full basis-1/4 shrink-0 flex items-center gap-x-4">
-        <picture className="h-full bg-blue-400 rounded-md overflow-hidden">
-          <img className="h-full w-auto" src={currentSong?.image} alt="" />
-        </picture>
-        <div className="pt-2">
-          <div className="text-white">{currentSong?.title}</div>
-          <div className="text-sm">
-            {currentSong &&
-              getSongCategories(currentSong)
-                .map(({ title }) => title)
-                .join(", ")}
-          </div>
-        </div>
+        {currentSong && (
+          <>
+            <picture className="h-full bg-blue-400 rounded-md overflow-hidden">
+              <img
+                className="h-full object-cover aspect-square"
+                src={currentSong?.image}
+                alt=""
+              />
+            </picture>
+            <div className="pt-2 truncate">
+              <div className="text-white truncate">{currentSong?.title}</div>
+              <div className="text-sm truncate">
+                {currentSong &&
+                  getSongCategories(currentSong)
+                    .map(({ title }) => title)
+                    .join(", ")}
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="basis-1/2 flex flex-col justify-center items-center">

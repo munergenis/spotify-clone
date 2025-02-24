@@ -4,7 +4,7 @@ import { type Category } from "@/lib/data";
 
 interface Props {
   category: Category;
-  class: string;
+  class?: string;
 }
 
 const { category, class: className } = Astro.props;
@@ -18,7 +18,7 @@ const { slug, title, cover, id } = category;
   >
     <picture class="h-full w-auto aspect-square flex-none overflow-hidden">
       <img
-        class="object-cover"
+        class="object-cover aspect-square"
         src={cover}
         alt={`Portada de ${title}`}
         transition:name=`category ${slug} image`

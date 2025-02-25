@@ -7,7 +7,7 @@ const PlayerControls = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex justify-center items-center gap-2">
         <PlayerControlButtons />
       </div>
 
@@ -15,7 +15,7 @@ const PlayerControls = () => {
         <PlayerControlProgressBar audioRef={audioRef} />
       </div>
 
-      <div className="py-10 absolute inset-x-0 w-fit mx-auto -top-20 opacity-40 hover:opacity-100 hover:transform hover:translate-y-12 transition duration-200">
+      <div>
         <AudioPlayer audioRef={audioRef} />
       </div>
     </>

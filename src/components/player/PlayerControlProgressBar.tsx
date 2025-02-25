@@ -26,8 +26,9 @@ const PlayerControlProgressBar = ({
   return (
     <>
       <Slider
-        className="py-2"
+        className="pb-2 pt-3 transition duration-500"
         value={[currentTime]}
+        disabled={!currentSong}
         max={currentSong ? duration : 1}
         onValueChange={handleSliderChange}
       />

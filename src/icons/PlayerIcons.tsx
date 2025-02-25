@@ -22,8 +22,9 @@ export const Play = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export const Prev = () => (
+export const Prev = ({ className }: { className?: string }) => (
   <svg
+    className={`size-3 ${className}`}
     fill="currentColor"
     role="img"
     height="16"
@@ -35,8 +36,9 @@ export const Prev = () => (
   </svg>
 );
 
-export const Next = () => (
+export const Next = ({ className }: { className?: string }) => (
   <svg
+    className={`size-3 ${className}`}
     fill="currentColor"
     role="img"
     height="16"

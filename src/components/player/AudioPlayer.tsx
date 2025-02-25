@@ -10,12 +10,6 @@ const AudioPlayer = ({
   return (
     <audio
       ref={audioRef}
-      controls
-      // TODO
-      loop={false}
-      // onChange={}
-      // onSeeked={}
-      // onSeeking={}
       onEnded={handleOnSongEnded}
       onLoadedMetadata={handleSetDuration}
     />

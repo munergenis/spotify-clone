@@ -11,6 +11,8 @@ export interface PlayerStore {
   currentTime: number;
   volume: number;
   prevVolume: number;
+  hasPrevSong: () => boolean;
+  hasNextSong: () => boolean;
   setIsPlaying: (isPlaying: boolean) => void;
   setMediaId: (mediaId: string | null) => void;
   setPlaylist: (playlist: Song[]) => void;
@@ -21,7 +23,10 @@ export interface PlayerStore {
   setCurrentTime: (currentTime: number) => void;
   setVolume: (volume: number) => void;
   toggleMute: () => void;
+  setNewPlaylistSong: (newIndex: number) => void;
   handleSongEnd: () => void;
+  handleNextSong: () => void;
+  handlePrevSong: () => void;
 }
 
 export const usePlayerStore = create<PlayerStore>((set, get) => ({
@@ -54,14 +59,30 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
     }
   },
 
-  handleSongEnd: () => {
+  hasPrevSong: () => {
     const { playlist, playlistIndex } = get();
-    if (playlist && playlist.length - 1 > playlistIndex) {
-      const newIndex = playlistIndex + 1;
+    return Array.isArray(playlist) && playlistIndex > 0;
+  },
+  hasNextSong: () => {
+    const { playlist, playlistIndex } = get();
+    return Array.isArray(playlist) && playlist.length - 1 > playlistIndex;
+  },
+
+  setNewPlaylistSong: (newIndex) => {
+    const { playlist } = get();
+    if (playlist) {
       set({
         playlistIndex: newIndex,
         currentSong: playlist[newIndex],
       });
+    }
+  },
+
+  handleSongEnd: () => {
+    const { playlistIndex, setNewPlaylistSong, hasNextSong } = get();
+    if (hasNextSong()) {
+      const newIndex = playlistIndex + 1;
+      setNewPlaylistSong(newIndex);
     } else {
       set({
         mediaId: null,
@@ -72,6 +93,22 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
         duration: 0,
         isPlaying: false,
       });
+    }
+  },
+
+  handleNextSong: () => {
+    const { playlistIndex, setNewPlaylistSong, hasNextSong } = get();
+    if (hasNextSong()) {
+      const newIndex = playlistIndex + 1;
+      setNewPlaylistSong(newIndex);
+    }
+  },
+
+  handlePrevSong: () => {
+    const { playlistIndex, setNewPlaylistSong, hasPrevSong } = get();
+    if (hasPrevSong()) {
+      const newIndex = playlistIndex - 1;
+      setNewPlaylistSong(newIndex);
     }
   },
 }));

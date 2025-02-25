@@ -1,6 +1,7 @@
 ---
 import PlayCardButton from "@/components/PlayCardButton";
 import { type Category } from "@/lib/data";
+import { Image } from "astro:assets";
 
 interface Props {
   category: Category;
@@ -16,14 +17,16 @@ const { slug, title, cover, id } = category;
     class="relative group category-item flex gap-4 bg-card-primary-dark h-10 lg:h-14 shadow-md rounded-sm overflow-hidden hover:scale-[1.03] hover:shadow-xl transition duration-300"
     href={`/categories/${slug}`}
   >
-    <picture class="h-full w-auto aspect-square flex-none overflow-hidden">
-      <img
+    <div class="h-full w-auto aspect-square flex-none overflow-hidden">
+      <Image
+        inferSize
         class="object-cover aspect-square"
         src={cover}
         alt={`Portada de ${title}`}
+        loading="eager"
         transition:name=`category ${slug} image`
       />
-    </picture>
+    </div>
 
     <PlayCardButton client:visible size="small" media={category} />
     <div class="truncate flex flex-col justify-center pr-2">

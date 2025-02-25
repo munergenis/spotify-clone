@@ -1,7 +1,9 @@
+import PlayerVolumeIcon from "@/components/player/PlayerVolumeIcon";
+import { Slider } from "@/components/ui/slider";
 import { usePlayerStore } from "@/store/playerStore";
 
 const PlayerVolumeControls = () => {
-  const { setVolume, toggleMute } = usePlayerStore((state) => state);
+  const { volume, setVolume, toggleMute } = usePlayerStore((state) => state);
 
   const handleSeekVolume = (val: number) => {
     if (val < 0 || val > 1) return;
@@ -10,35 +12,22 @@ const PlayerVolumeControls = () => {
 
   return (
     <>
-      <p className="text-sm text-white mr-4">Volume</p>
       <button
-        className="text-xl p-2 cursor-pointer w-14 h-14 bg-white rounded-full"
+        className="p-2 cursor-pointer text-white hover:text-text-dark transition duration-200"
         onClick={toggleMute}
       >
-        <span>X</span>
-        <div className="text-sm">mute</div>
+        <PlayerVolumeIcon />
       </button>
-      <button
-        className="text-xl p-2 cursor-pointer w-14 h-14 bg-white rounded-full"
-        onClick={() => handleSeekVolume(0.2)}
-      >
-        <span>0.2</span>
-        <div className="text-sm">seek</div>
-      </button>
-      <button
-        className="text-xl p-2 cursor-pointer w-14 h-14 bg-white rounded-full"
-        onClick={() => handleSeekVolume(0.4)}
-      >
-        <span>0.4</span>
-        <div className="text-sm">seek</div>
-      </button>
-      <button
-        className="text-xl p-2 cursor-pointer w-14 h-14 bg-white rounded-full"
-        onClick={() => handleSeekVolume(0.8)}
-      >
-        <span>0.8</span>
-        <div className="text-sm">seek</div>
-      </button>
+      <Slider
+        className="max-w-40"
+        value={[volume]}
+        max={1}
+        min={0}
+        step={0.01}
+        onValueChange={([value]: number[]) => {
+          setVolume(value);
+        }}
+      />
     </>
   );
 };

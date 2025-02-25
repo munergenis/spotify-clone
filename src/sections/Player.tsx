@@ -16,7 +16,7 @@ const Player = () => {
         <PlayerControls />
       </div>
 
-      <div className="text-3xl text-black basis-1/4 shrink-0 flex items-center justify-end">
+      <div className="text-3xl gap-2 basis-1/4 shrink-0 flex items-center justify-end">
         <PlayerVolumeControls />
       </div>
     </div>

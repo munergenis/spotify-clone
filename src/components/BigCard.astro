@@ -1,6 +1,7 @@
 ---
 import PlayCardButton from "@/components/PlayCardButton";
 import { songs, type Category, type Song } from "@/lib/data";
+import { Image } from "astro:assets";
 
 interface Props {
   media: Song | Category;
@@ -41,19 +42,20 @@ if (media.type === "song") {
     class="song-item group bg-card-primary-dark flex flex-col p-2 rounded-sm shadow-md hover:shadow-xl hover:bg-card-primary-dark/50 transition duration-200"
     href={href}
   >
-    <picture class="relative rounded-sm overflow-hidden">
-      <img
+    <div class="relative rounded-sm overflow-hidden">
+      <Image
         class="object-cover aspect-video object-center"
         src={src}
+        inferSize
         alt={`Portada de ${title}`}
-        transition:name={transitionImage}
+        loading="eager"
       />
       <PlayCardButton client:visible media={media} />
-    </picture>
+    </div>
 
     <div class="my-3 px-3">
       <h4 class="text-lg text-white text-nowrap truncate">
-        <span transition:name={transitionTitle}>
+        <span>
           {title}
         </span>
       </h4>

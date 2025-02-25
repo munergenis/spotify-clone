@@ -21,6 +21,7 @@ export interface PlayerStore {
   setCurrentTime: (currentTime: string) => void;
   setVolume: (volume: number) => void;
   toggleMute: () => void;
+  handleSongEnd: () => void;
 }
 
 export const usePlayerStore = create<PlayerStore>((set, get) => ({
@@ -50,6 +51,27 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
       set({ volume: prevVolume });
     } else {
       set({ volume: 0, prevVolume: volume });
+    }
+  },
+
+  handleSongEnd: () => {
+    const { playlist, playlistIndex } = get();
+    if (playlist && playlist.length - 1 > playlistIndex) {
+      const newIndex = playlistIndex + 1;
+      set({
+        playlistIndex: newIndex,
+        currentSong: playlist[newIndex],
+      });
+    } else {
+      set({
+        mediaId: null,
+        playlist: null,
+        playlistIndex: 0,
+        currentSong: null,
+        currentTime: "0:00",
+        duration: "0:00",
+        isPlaying: false,
+      });
     }
   },
 }));

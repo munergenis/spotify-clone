@@ -1,21 +1,12 @@
-import { categories, songs, type Song } from "@/lib/data";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
-function getCategory(categoryId: string) {
-  return categories.find((category) => category.id === categoryId);
-}
-function getCategorySongs(categoryId: string) {
-  return songs.filter((song) => song.categoriesId.includes(categoryId));
-}
-function getSong(songId: string) {
-  return songs.find((song) => song.id === songId);
-}
-function getSongCategories(song: Song) {
-  return (
-    song.categoriesId
-      .map(getCategory)
-      .filter((category) => category !== undefined) // filters out undefined entries
-      .map(({ title, slug }) => ({ title, slug })) ?? []
-  );
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }
 
-export { getCategory, getCategorySongs, getSong, getSongCategories };
+export function formatTime(seconds: number) {
+  const min = Math.floor(seconds / 60);
+  const sec = Math.floor(seconds % 60);
+  return `${min}:${sec.toString().padStart(2, "0")}`;
+}

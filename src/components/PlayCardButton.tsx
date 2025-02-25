@@ -1,7 +1,7 @@
 import { Pause, Play } from "@/icons/PlayerIcons";
 import Songs from "@/icons/Songs.astro";
 import { categories, songs, type Category, type Song } from "@/lib/data";
-import { getCategorySongs } from "@/lib/utils";
+import { getCategorySongs } from "@/lib/utilsMedia";
 import { usePlayerStore } from "@/store/playerStore";
 import type React from "react";
 
@@ -23,7 +23,6 @@ const PlayCardButton = ({
 }) => {
   const isPlaying = usePlayerStore((state) => state.isPlaying);
   const mediaId = usePlayerStore((state) => state.mediaId);
-  const currentSong = usePlayerStore((state) => state.currentSong);
   const playlist = usePlayerStore((state) => state.playlist);
   const setIsPlaying = usePlayerStore((state) => state.setIsPlaying);
   const setMediaId = usePlayerStore((state) => state.setMediaId);
@@ -34,28 +33,29 @@ const PlayCardButton = ({
 
   const isCurrentMediaPlaying = isPlaying && mediaId === media.id;
 
-  // funcions de play card button
+  const handlePlay = () => {
+    if (media.type === "song") {
+      playlist && clearPlaylist();
+      setCurrentSong(media as Song);
+    } else if (media.type === "category") {
+      const categorySongs = getCategorySongs(media.id);
+      if (categorySongs.length === 0) return;
+      setPlaylist(categorySongs);
+      setPlaylistIndex(0);
+      setCurrentSong(categorySongs[0]);
+    }
+    setMediaId(media.id);
+    setIsPlaying(true);
+  };
+
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
 
     if (mediaId === media.id) {
-      isPlaying ? setIsPlaying(false) : setIsPlaying(true);
+      setIsPlaying(!isPlaying);
     } else {
-      if (media.type === "song") {
-        playlist !== null && clearPlaylist();
-
-        setCurrentSong(media as Song);
-      } else if (media.type === "category") {
-        const categorySongs = getCategorySongs(media.id);
-        if (categorySongs.length === 0) return;
-
-        setPlaylist(categorySongs);
-        setPlaylistIndex(0);
-        setCurrentSong(categorySongs[0]);
-      }
-      setMediaId(media.id);
-      setIsPlaying(true);
+      handlePlay();
     }
   };
 

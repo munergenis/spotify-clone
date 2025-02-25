@@ -32,6 +32,9 @@
   /* PLAY CARD BUTTON */
   --color-play-card: oklch(0.673 0.182 276.935);
   --color-play-card-hover: oklch(0.585 0.233 277.117);
+
+  /* SLIDERS */
+  --color-slider-progress: oklch(0.673 0.182 276.935);
 }
 
 :root {

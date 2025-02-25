@@ -8,14 +8,13 @@ export interface Category {
   color: (typeof colors)[keyof typeof colors];
   cover: string;
 }
-
 export const categories: Category[] = [
   {
     type: "category",
     id: "adoracio",
     slug: "adoracio",
     title: "Adoració",
-    color: colors.yellow,
+    color: colors.red,
     cover: "https://picsum.photos/seed/adoracio/400/300",
   },
   {
@@ -23,7 +22,7 @@ export const categories: Category[] = [
     id: "animacio",
     slug: "animacio",
     title: "Animació",
-    color: colors.red,
+    color: colors.orange,
     cover: "https://picsum.photos/seed/animacio/400/300",
   },
   {
@@ -39,7 +38,7 @@ export const categories: Category[] = [
     id: "fe",
     slug: "fe",
     title: "Fe",
-    color: colors.red,
+    color: colors.green,
     cover: "https://picsum.photos/seed/fe/400/300",
   },
   {
@@ -47,7 +46,7 @@ export const categories: Category[] = [
     id: "gracies",
     slug: "gracies",
     title: "Gràcies",
-    color: colors.yellow,
+    color: colors.teal,
     cover: "https://picsum.photos/seed/gracies/400/300",
   },
   {
@@ -55,7 +54,7 @@ export const categories: Category[] = [
     id: "guariment",
     slug: "guariment",
     title: "Guariment",
-    color: colors.red,
+    color: colors.blue,
     cover: "https://picsum.photos/seed/guariment/400/300",
   },
   {
@@ -63,7 +62,7 @@ export const categories: Category[] = [
     id: "invitatori",
     slug: "invitatori",
     title: "Invitatori",
-    color: colors.red,
+    color: colors.indigo,
     cover: "https://picsum.photos/seed/invitatori/400/300",
   },
   {
@@ -71,7 +70,7 @@ export const categories: Category[] = [
     id: "lloanca",
     slug: "lloanca",
     title: "Lloança",
-    color: colors.red,
+    color: colors.purple,
     cover: "https://picsum.photos/seed/lloanca/400/300",
   },
   {
@@ -79,7 +78,7 @@ export const categories: Category[] = [
     id: "missa",
     slug: "missa",
     title: "Missa",
-    color: colors.red,
+    color: colors.pink,
     cover: "https://picsum.photos/seed/missa/400/300",
   },
   {
@@ -87,7 +86,7 @@ export const categories: Category[] = [
     id: "missio",
     slug: "missio",
     title: "Missió",
-    color: colors.red,
+    color: colors.emerald,
     cover: "https://picsum.photos/seed/missio/400/300",
   },
   {
@@ -95,7 +94,7 @@ export const categories: Category[] = [
     id: "poupurri",
     slug: "poupurri",
     title: "Poupurri",
-    color: colors.red,
+    color: colors.rose,
     cover: "https://picsum.photos/seed/poupurri/400/300",
   },
   {
@@ -103,32 +102,15 @@ export const categories: Category[] = [
     id: "resurreccio",
     slug: "resurreccio",
     title: "Resurrecció",
-    color: colors.red,
+    color: colors.gray,
     cover: "https://picsum.photos/seed/resurreccio/400/300",
   },
 ];
 
 const homeCategoriesList = ["Fe", "Animació", "Guariment", "Esperit"];
-
 export const homeCategories = categories.filter((category) =>
   homeCategoriesList.includes(category.title)
 );
-
-// export const moreCategories = categories.map((item) => ({
-//   ...item,
-//   slug: item.slug + "_more",
-// }));
-
-// export const sidebarCategories = categories.map((item) => ({
-//   ...item,
-//   slug: item.slug + "_side",
-// }));
-
-// export const allCategories = [
-//   ...categories,
-//   ...moreCategories,
-//   ...sidebarCategories,
-// ];
 
 export interface Song {
   type: "song";
@@ -140,7 +122,6 @@ export interface Song {
   image: string;
   artists: string[];
 }
-
 export const songs: Song[] = [
   {
     type: "song",
@@ -600,7 +581,6 @@ const homeSongsList = [
   "Vine a coneixer el meu Salvador",
   "Transforma'm",
 ];
-
 export const homeSongs = songs.filter((song) =>
   homeSongsList.includes(song.title)
 );

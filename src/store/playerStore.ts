@@ -7,8 +7,8 @@ export interface PlayerStore {
   playlist: Song[] | null;
   playlistIndex: number;
   currentSong: Song | null;
-  duration: string;
-  currentTime: string;
+  duration: number;
+  currentTime: number;
   volume: number;
   prevVolume: number;
   setIsPlaying: (isPlaying: boolean) => void;
@@ -17,8 +17,8 @@ export interface PlayerStore {
   clearPlaylist: () => void;
   setPlaylistIndex: (index: number) => void;
   setCurrentSong: (currentSong: Song | null) => void;
-  setDuration: (duration: string) => void;
-  setCurrentTime: (currentTime: string) => void;
+  setDuration: (duration: number) => void;
+  setCurrentTime: (currentTime: number) => void;
   setVolume: (volume: number) => void;
   toggleMute: () => void;
   handleSongEnd: () => void;
@@ -30,8 +30,8 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
   playlist: null,
   playlistIndex: 0,
   currentSong: null,
-  duration: "0:00",
-  currentTime: "0:00",
+  duration: 0,
+  currentTime: 0,
   volume: 0.6,
   prevVolume: 0.6,
 
@@ -68,8 +68,8 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
         playlist: null,
         playlistIndex: 0,
         currentSong: null,
-        currentTime: "0:00",
-        duration: "0:00",
+        currentTime: 0,
+        duration: 0,
         isPlaying: false,
       });
     }

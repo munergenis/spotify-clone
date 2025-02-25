@@ -1,8 +1,8 @@
 import { formatTime } from "@/lib/utils";
 import { usePlayerStore } from "@/store/playerStore";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
-const useAudioPlayer = () => {
+const useAudioPlayer = (audioRef: React.RefObject<HTMLAudioElement | null>) => {
   const {
     currentSong,
     setCurrentTime,
@@ -18,13 +18,12 @@ const useAudioPlayer = () => {
     setIsPlaying,
     handleSongEnd,
   } = usePlayerStore((state) => state);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // handles player music track
   useEffect(() => {
     if (audioRef.current && currentSong) {
       audioRef.current.src = currentSong.src;
-      setCurrentTime("0:00");
+      setCurrentTime(0);
       audioRef.current.play();
       // TODO - audioRef play: check double render when song changes
       console.log("currentSong changed audioref triggers play");
@@ -56,7 +55,7 @@ const useAudioPlayer = () => {
     const updateCurrentTime = () => {
       if (audioRef.current) {
         const time = audioRef.current.currentTime;
-        setCurrentTime(formatTime(time));
+        setCurrentTime(time);
       }
     };
 
@@ -89,10 +88,10 @@ const useAudioPlayer = () => {
     currentTarget: EventTarget & HTMLAudioElement;
   }) => {
     const duration = currentTarget.duration;
-    setDuration(formatTime(duration));
+    setDuration(duration);
   };
 
-  return { audioRef, handleOnSongEnded, handleSetDuration };
+  return { handleOnSongEnded, handleSetDuration };
 };
 
 export default useAudioPlayer;

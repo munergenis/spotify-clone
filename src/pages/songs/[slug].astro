@@ -1,28 +1,31 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { categories, songs } from "@/lib/data";
+import { getEntry } from "astro:content";
+// import { categories, songs } from "@/lib/data";
 
-export function getStaticPaths() {
-  return songs.map((song) => {
-    const songCategories = categories.filter((category) =>
-      song.categoriesId.includes(category.id)
-    );
+// export function getStaticPaths() {
+//   return songs.map((song) => {
+//     const songCategories = categories.filter((category) =>
+//       song.categoriesId.includes(category.id)
+//     );
 
-    return {
-      params: {
-        slug: song.slug,
-      },
-      props: {
-        song: song,
-        songCategories,
-      },
-    };
-  });
-}
+//     return {
+//       params: {
+//         slug: song.slug,
+//       },
+//       props: {
+//         song: song,
+//         songCategories,
+//       },
+//     };
+//   });
+// }
 
-const { slug } = Astro.params;
-const { song, songCategories } = Astro.props;
-const { title, image } = song;
+// const { slug } = Astro.params;
+// const { song, songCategories } = Astro.props;
+// const { title, image } = song;
+
+const songs = await getEntry("songs");
 ---
 
 <Layout>
